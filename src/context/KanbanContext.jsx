@@ -9,11 +9,27 @@ const initialState = [
     projectName: "Mobile Apps Project",
     progress: [
       {
-        id: 2,
+        id: "progress-2",
         status: "todo",
         card: [
           {
-            id: 6,
+            id: "card-6",
+            title: "Implement a low priority software very simple",
+            description: "An easy software will be made quickly",
+            date: "nov",
+            priority: "low",
+            type: "dev",
+          },
+          {
+            id: "card-10",
+            title: "Implement a low priority software very simple",
+            description: "An easy software will be made quickly",
+            date: "nov",
+            priority: "low",
+            type: "dev",
+          },
+          {
+            id: "card-11",
             title: "Implement a low priority software very simple",
             description: "An easy software will be made quickly",
             date: "nov",
@@ -23,11 +39,11 @@ const initialState = [
         ],
       },
       {
-        id: 3,
+        id: "progress-3",
         status: "in work",
         card: [
           {
-            id: 7,
+            id: "card-7",
             title: "Research user preferences",
             description: "Research user prefences by their country ",
             date: "nov",
@@ -37,11 +53,11 @@ const initialState = [
         ],
       },
       {
-        id: 4,
+        id: "progress-4",
         status: "in progress",
         card: [
           {
-            id: 8,
+            id: "card-8",
             title: "Budget planning",
             description: "Budget for making a web apps",
             date: "nov",
@@ -51,11 +67,11 @@ const initialState = [
         ],
       },
       {
-        id: 5,
+        id: "progress-5",
         status: "completed",
         card: [
           {
-            id: 9,
+            id: "card-9",
             title: "Design UI/UX App",
             description: "Designing with Figma",
             date: "nov",

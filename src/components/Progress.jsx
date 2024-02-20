@@ -2,6 +2,8 @@ import { BsThreeDots } from "react-icons/bs";
 import KanbanCard from "./KanbanCard";
 import AddCard from "./AddCard";
 
+import DropComponent from "./DropComponent";
+
 const StatusBar = ({ progress }) => {
   if (progress === "in work") {
     return <div className="w-full h-px bg-blue-600 my-3"></div>;
@@ -15,7 +17,7 @@ const StatusBar = ({ progress }) => {
 };
 
 const Progress = ({ data }) => {
-  const { status, card } = data;
+  const { status, card, id } = data;
   return (
     <div className="w-[250px] ">
       <div className="flex justify-between items-center">
@@ -29,13 +31,23 @@ const Progress = ({ data }) => {
       </div>
       <StatusBar progress={status} />
 
-      <div className="w-full rounded-md bg-blue-50  p-2">
-        {card.map((item) => (
-          <KanbanCard key={item.id} data={item} />
-        ))}
-
-        <AddCard />
-      </div>
+      <DropComponent droppableId={id}>
+        {(provided) => {
+          return (
+            <div
+              className="w-full rounded-md bg-blue-50  p-2"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {card.map((item, i) => (
+                <KanbanCard key={item.id} data={item} index={i} />
+              ))}
+              {provided.placeholder}
+              <AddCard />
+            </div>
+          );
+        }}
+      </DropComponent>
     </div>
   );
 };
