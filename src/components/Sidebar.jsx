@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const { state } = useKanban();
-  console.log(state);
+
   return (
     <div className=" basis-48 flex justify-between">
       <div className="flex flex-col px-2 py-3">

@@ -1,64 +1,12 @@
 import { BiCalendar } from "react-icons/bi";
 import { Draggable } from "react-beautiful-dnd";
-
-const Priority = ({ priority }) => {
-  if (priority === "low") {
-    return (
-      <span className="px-2 text-sm rounded-lg bg-gray-50 font-semibold text-gray-500 capitalize">
-        {priority}
-      </span>
-    );
-  } else if (priority === "mid") {
-    return (
-      <span className="px-2 text-sm rounded-lg bg-lime-50 font-semibold text-lime-500 capitalize">
-        {priority}
-      </span>
-    );
-  } else {
-    return (
-      <span className="px-2 text-sm rounded-lg bg-red-50 font-semibold text-red-500 capitalize">
-        {priority}
-      </span>
-    );
-  }
-};
-
-const Type = ({ type }) => {
-  if (type === "dev") {
-    return (
-      <span className="bg-orange-500 px-2 text-sm py-1 rounded-2xl font-semibold text-white-kanban capitalize">
-        {type}
-      </span>
-    );
-  } else if (type === "planning") {
-    return (
-      <span className="bg-violet-500 px-2 text-sm py-1 rounded-2xl font-semibold text-white-kanban capitalize">
-        {type}
-      </span>
-    );
-  } else if (type === "research") {
-    return (
-      <span className="bg-violet-kanban px-2 text-sm py-1 rounded-2xl font-semibold text-white-kanban capitalize">
-        {type}
-      </span>
-    );
-  } else if (type === "design") {
-    return (
-      <span className="bg-blue-500 px-2 text-sm py-1 rounded-2xl font-semibold text-white-kanban capitalize">
-        {type}
-      </span>
-    );
-  } else {
-    return (
-      <span className="bg-pink-500 px-2 text-sm py-1 rounded-2xl font-semibold text-white-kanban capitalize">
-        {type}
-      </span>
-    );
-  }
-};
+import Type from "./Type";
+import Priority from "./Priority";
+import PropTypes from "prop-types";
 
 const KanbanCard = ({ data, index }) => {
   const { title, description, date, priority, type, id } = data;
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -94,6 +42,11 @@ const KanbanCard = ({ data, index }) => {
       )}
     </Draggable>
   );
+};
+
+KanbanCard.propTypes = {
+  data: PropTypes.object,
+  index: PropTypes.number,
 };
 
 export default KanbanCard;

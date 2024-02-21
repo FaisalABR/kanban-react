@@ -1,20 +1,9 @@
 import { BsThreeDots } from "react-icons/bs";
 import KanbanCard from "./KanbanCard";
 import AddCard from "./AddCard";
-
 import DropComponent from "./DropComponent";
-
-const StatusBar = ({ progress }) => {
-  if (progress === "in work") {
-    return <div className="w-full h-px bg-blue-600 my-3"></div>;
-  } else if (progress === "in progress") {
-    return <div className="w-full h-px bg-red-600 my-3"></div>;
-  } else if (progress === "completed") {
-    return <div className="w-full h-px bg-green-600 my-3"></div>;
-  } else {
-    return <div className="w-full h-px bg-black my-3"></div>;
-  }
-};
+import StatusBar from "./StatusBar";
+import PropTypes from "prop-types";
 
 const Progress = ({ data }) => {
   const { status, card, id } = data;
@@ -50,6 +39,10 @@ const Progress = ({ data }) => {
       </DropComponent>
     </div>
   );
+};
+
+Progress.propTypes = {
+  data: PropTypes.object,
 };
 
 export default Progress;

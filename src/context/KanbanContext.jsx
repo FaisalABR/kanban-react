@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import { kanbanReducer } from "./kanbanReducer";
+import PropTypes from "prop-types";
 
 export const KanbanContext = createContext(undefined);
 
@@ -92,4 +93,8 @@ export const KanbanProvider = ({ children }) => {
       {children}
     </KanbanContext.Provider>
   );
+};
+
+KanbanProvider.propTypes = {
+  children: PropTypes.node,
 };
