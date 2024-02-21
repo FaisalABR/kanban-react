@@ -1,31 +1,23 @@
+import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import KanbanCard from "./KanbanCard";
 import AddCard from "./AddCard";
 import DropComponent from "./DropComponent";
 import StatusBar from "./StatusBar";
 import PropTypes from "prop-types";
-import { useKanban } from "../context/useKanban";
-import { addCard } from "../context/kanbanAction";
+
 import { useParams } from "react-router-dom";
+import ModalTask from "./ModalTask";
 
 const Progress = ({ data }) => {
+  const [openModal, setOpenModal] = useState(false);
   const { projectId } = useParams();
   const { status, card, id } = data;
-  const { dispatch } = useKanban();
 
-  const handleAddCard = () => {
-    dispatch(
-      addCard(
-        projectId,
-        id,
-        "Membuat fitur search",
-        "membuat fitur search untuk barang",
-        "dec",
-        "mid",
-        "dev"
-      )
-    );
+  const handleOpen = () => {
+    setOpenModal(true);
   };
+
   return (
     <div className="w-[250px] ">
       <div className="flex justify-between items-center">
@@ -51,11 +43,18 @@ const Progress = ({ data }) => {
                 <KanbanCard key={item.id} data={item} index={i} />
               ))}
               {provided.placeholder}
-              <AddCard handleClick={handleAddCard} />
+              <AddCard handleClick={handleOpen} />
             </div>
           );
         }}
       </DropComponent>
+      {openModal && (
+        <ModalTask
+          setOpenModal={setOpenModal}
+          projectId={projectId}
+          progressId={id}
+        />
+      )}
     </div>
   );
 };

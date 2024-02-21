@@ -17,7 +17,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-dvh fixed bg-white basis-48 flex justify-between z-50 overflow-y-auto">
+    <div className="h-dvh hidden md:flex fixed bg-white basis-48  justify-between z-50 overflow-y-auto">
       <div className="flex flex-col px-2 py-3">
         {/* Head */}
         <div className="flex gap-2 items-center">

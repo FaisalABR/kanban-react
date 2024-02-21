@@ -1,4 +1,5 @@
 import { GoPlus } from "react-icons/go";
+import PropTypes from "prop-types";
 
 const AddCard = ({ handleClick }) => {
   return (
@@ -12,4 +13,7 @@ const AddCard = ({ handleClick }) => {
   );
 };
 
+AddCard.propTypes = {
+  handleClick: PropTypes.func,
+};
 export default AddCard;

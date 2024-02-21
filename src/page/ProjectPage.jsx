@@ -34,7 +34,7 @@ function ProjectPage() {
   };
 
   return (
-    <div className="w-full ml-56 py-2 overflow-y-auto">
+    <div className="w-full md:ml-56 py-2 overflow-y-auto">
       {/* Top */}
       <div className="px-3">
         <div className="w-full flex justify-between items-center">
