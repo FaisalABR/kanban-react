@@ -1,12 +1,23 @@
+import { useState } from "react";
 import { BsPlusSquareFill } from "react-icons/bs";
 import { useKanban } from "../context/useKanban";
 import { NavLink } from "react-router-dom";
+import { addProject } from "../context/kanbanAction";
 
 const Sidebar = () => {
-  const { state } = useKanban();
+  const { state, dispatch } = useKanban();
+  const [project, setProject] = useState(false);
+  const [inputProject, setInputProject] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addProject(inputProject));
+    setInputProject("");
+    setProject(false);
+  };
 
   return (
-    <div className=" basis-48 flex justify-between">
+    <div className="h-dvh fixed bg-white basis-48 flex justify-between z-50 overflow-y-auto">
       <div className="flex flex-col px-2 py-3">
         {/* Head */}
         <div className="flex gap-2 items-center">
@@ -30,10 +41,11 @@ const Sidebar = () => {
             <p className="text-violet-kanban">Projects</p>
             <BsPlusSquareFill
               size={25}
-              className="text-violet-kanban cursor-pointer"
+              className="text-violet-kanban cursor-pointer hover:text-violet-500 transition-all"
+              onClick={() => setProject(true)}
             />
           </div>
-          <div className="flex flex-col my-2">
+          <div className="flex flex-col my-4">
             {state.map((item) => (
               <NavLink
                 to={`/projects/${item.id}`}
@@ -47,10 +59,35 @@ const Sidebar = () => {
                 {item.projectName}
               </NavLink>
             ))}
+            {project && (
+              <form onSubmit={handleSubmit} className="flex flex-col text-sm">
+                <input
+                  type="text"
+                  placeholder="Add your project.."
+                  value={inputProject}
+                  className="bg-blue-100 rounded-md px-2 py-1 outline-none my-2"
+                  onChange={(e) => setInputProject(e.target.value)}
+                />
+                <div className="flex gap-2">
+                  <button
+                    type="submit"
+                    className="grow bg-violet-kanban rounded-md text-white font-semibold"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    className="grow rounded-md border-[1px] border-violet-kanban text-violet-kanban"
+                    onClick={() => setProject(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>
-      <div className="w-px bg-gray-400/50 h-full"></div>
+      <div className="w-px bg-gray-400/50 min-h-svh"></div>
     </div>
   );
 };

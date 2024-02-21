@@ -4,9 +4,28 @@ import AddCard from "./AddCard";
 import DropComponent from "./DropComponent";
 import StatusBar from "./StatusBar";
 import PropTypes from "prop-types";
+import { useKanban } from "../context/useKanban";
+import { addCard } from "../context/kanbanAction";
+import { useParams } from "react-router-dom";
 
 const Progress = ({ data }) => {
+  const { projectId } = useParams();
   const { status, card, id } = data;
+  const { dispatch } = useKanban();
+
+  const handleAddCard = () => {
+    dispatch(
+      addCard(
+        projectId,
+        id,
+        "Membuat fitur search",
+        "membuat fitur search untuk barang",
+        "dec",
+        "mid",
+        "dev"
+      )
+    );
+  };
   return (
     <div className="w-[250px] ">
       <div className="flex justify-between items-center">
@@ -32,7 +51,7 @@ const Progress = ({ data }) => {
                 <KanbanCard key={item.id} data={item} index={i} />
               ))}
               {provided.placeholder}
-              <AddCard />
+              <AddCard handleClick={handleAddCard} />
             </div>
           );
         }}

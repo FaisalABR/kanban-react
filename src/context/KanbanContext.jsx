@@ -6,7 +6,7 @@ export const KanbanContext = createContext(undefined);
 
 const initialState = [
   {
-    id: 1,
+    id: "project-1",
     projectName: "Mobile Apps Project",
     progress: [
       {
@@ -26,16 +26,16 @@ const initialState = [
             title: "Implement a low priority software very simple",
             description: "An easy software will be made quickly",
             date: "nov",
-            priority: "low",
-            type: "dev",
+            priority: "high",
+            type: "research",
           },
           {
             id: "card-11",
             title: "Implement a low priority software very simple",
             description: "An easy software will be made quickly",
             date: "nov",
-            priority: "low",
-            type: "dev",
+            priority: "high",
+            type: "content",
           },
         ],
       },

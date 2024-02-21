@@ -22,7 +22,7 @@ const DropComponent = ({ children, ...props }) => {
 };
 
 DropComponent.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.any,
 };
 
 export default DropComponent;
