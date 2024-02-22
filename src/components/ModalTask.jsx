@@ -3,7 +3,7 @@ import { addCard } from "../context/kanbanAction";
 import { useKanban } from "../context/useKanban";
 import PropTypes from "prop-types";
 
-const ModalTask = ({ setOpenModal, projectId, progressId }) => {
+const ModalTask = ({ setOpenModal, progressId }) => {
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -17,7 +17,6 @@ const ModalTask = ({ setOpenModal, projectId, progressId }) => {
     e.preventDefault();
     dispatch(
       addCard(
-        projectId,
         progressId,
         task.title,
         task.description,

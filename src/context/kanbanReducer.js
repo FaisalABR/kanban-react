@@ -6,80 +6,58 @@ export const kanbanReducer = produce((draft, action) => {
   switch (type) {
     case "ADD_CARD":
       {
-        const project = draft.find((item) => item.id === payload.projectId);
-        const progress = project.progress.find(
-          (item) => item.id === payload.progressId
-        );
-        progress.card.push({
-          id: uuidv4(),
+        const cardId = uuidv4();
+        const data = {
+          id: cardId,
           title: payload.title,
           description: payload.description,
           date: payload.date,
           priority: payload.priority,
           type: payload.type,
-        });
+        };
+        draft.progress[payload.progressId].card.push(cardId);
+
+        draft.cards[cardId] = data;
       }
       break;
     case "DELETE_CARD":
       {
-        const project = draft.find((item) => item.id === payload.projectId);
-        const progress = project.progress.find(
-          (item) => item.id === payload.progressId
-        );
-        progress.card.splice(payload.index, 1);
+        draft.progress[payload.progressId].card.splice(payload.index, 1);
+        delete draft.cards[payload.cardId];
       }
       break;
     case "ADD_PROJECT":
-      draft.push({
-        id: uuidv4(),
-        projectName: payload.projectName,
-        progress: [
-          {
-            id: uuidv4(),
-            status: "todo",
+      {
+        const projectId = uuidv4();
+        // progressIds contains different uuids for each progress status [todo id, in work id, in progress id, completed id]
+        const progressIds = [uuidv4(), uuidv4(), uuidv4(), uuidv4()];
+        const progressStatus = ["todo", "in work", "in progress", "completed"];
+        draft.projects[projectId] = {
+          id: projectId,
+          projectName: payload.projectName,
+          progress: progressIds,
+        };
+
+        progressIds.map((item, i) => {
+          return (draft.progress[item] = {
+            id: item,
+            status: progressStatus[i],
             card: [],
-          },
-          {
-            id: uuidv4(),
-            status: "in work",
-            card: [],
-          },
-          {
-            id: uuidv4(),
-            status: "in progress",
-            card: [],
-          },
-          {
-            id: uuidv4(),
-            status: "completed",
-            card: [],
-          },
-        ],
-      });
+          });
+        });
+      }
       break;
     case "BETWEEN_PROGRESS":
       {
-        const project = draft.find((item) => item.id === payload.projectId);
-        const progressStart = project.progress.find(
-          (item) => item.id === payload.startId
-        );
-
-        const progressFinish = project.progress.find(
-          (item) => item.id === payload.finishId
-        );
+        const progressStart = draft.progress[payload.startId];
+        const progressFinish = draft.progress[payload.finishId];
         progressStart.card = payload.newStart;
         progressFinish.card = payload.newFinish;
       }
-
       break;
     case "REORDERING":
       {
-        const project = draft.find((item) => item.id === payload.projectId);
-        const progress = project.progress.find(
-          (item) => item.id === payload.progressId
-        );
-
-        progress.card = payload.task;
+        draft.progress[payload.progressId].card = payload.task;
       }
       break;
     default:

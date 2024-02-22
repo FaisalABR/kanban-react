@@ -6,14 +6,12 @@ import DropComponent from "./DropComponent";
 import StatusBar from "./StatusBar";
 import PropTypes from "prop-types";
 
-import { useParams } from "react-router-dom";
 import ModalTask from "./ModalTask";
 import { useKanban } from "../context/useKanban";
 
 const Progress = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
   const { cards } = useKanban();
-  const { projectId } = useParams();
   const { status, card, id } = data;
 
   const handleOpen = () => {
@@ -58,13 +56,7 @@ const Progress = ({ data }) => {
           );
         }}
       </DropComponent>
-      {openModal && (
-        <ModalTask
-          setOpenModal={setOpenModal}
-          projectId={projectId}
-          progressId={id}
-        />
-      )}
+      {openModal && <ModalTask setOpenModal={setOpenModal} progressId={id} />}
     </div>
   );
 };

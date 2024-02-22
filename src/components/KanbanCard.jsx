@@ -6,14 +6,13 @@ import Type from "./Type";
 import Priority from "./Priority";
 import PropTypes from "prop-types";
 import { BsThreeDots } from "react-icons/bs";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useKanban } from "../context/useKanban";
 import { deleteCard } from "../context/kanbanAction";
 
 const KanbanCard = ({ data, index, progressId }) => {
   const { title, description, date, priority, type, id } = data;
   const { dispatch } = useKanban();
-  const { projectId } = useParams();
   const [openDots, setOpenDots] = useState(false);
 
   const dotsClass = cx({
@@ -22,7 +21,7 @@ const KanbanCard = ({ data, index, progressId }) => {
   });
 
   const handleDelete = () => {
-    dispatch(deleteCard(projectId, progressId, index));
+    dispatch(deleteCard(progressId, id, index));
   };
 
   return (

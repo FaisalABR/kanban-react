@@ -1,20 +1,14 @@
-export const reorderTask = (task, projectId, progressId) => {
+export const reorderTask = (task, progressId) => {
   return {
     type: "REORDERING",
-    payload: { task, projectId, progressId },
+    payload: { task, progressId },
   };
 };
 
-export const moveBetween = (
-  newStart,
-  newFinish,
-  projectId,
-  startId,
-  finishId
-) => {
+export const moveBetween = (newStart, newFinish, startId, finishId) => {
   return {
     type: "BETWEEN_PROGRESS",
-    payload: { newStart, newFinish, projectId, startId, finishId },
+    payload: { newStart, newFinish, startId, finishId },
   };
 };
 
@@ -28,7 +22,6 @@ export const addProject = (projectName) => {
 };
 
 export const addCard = (
-  projectId,
   progressId,
   title,
   description,
@@ -39,7 +32,6 @@ export const addCard = (
   return {
     type: "ADD_CARD",
     payload: {
-      projectId,
       progressId,
       title,
       description,
@@ -50,12 +42,12 @@ export const addCard = (
   };
 };
 
-export const deleteCard = (projectId, progressId, index) => {
+export const deleteCard = (progressId, cardId, index) => {
   return {
     type: "DELETE_CARD",
     payload: {
-      projectId,
       progressId,
+      cardId,
       index,
     },
   };
