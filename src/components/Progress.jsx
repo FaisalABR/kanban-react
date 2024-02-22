@@ -8,9 +8,11 @@ import PropTypes from "prop-types";
 
 import { useParams } from "react-router-dom";
 import ModalTask from "./ModalTask";
+import { useKanban } from "../context/useKanban";
 
 const Progress = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
+  const { cards } = useKanban();
   const { projectId } = useParams();
   const { status, card, id } = data;
 
@@ -19,7 +21,7 @@ const Progress = ({ data }) => {
   };
 
   return (
-    <div className="w-[250px] ">
+    <div className="w-[250px]">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <h3 className="uppercase text-navy font-semibold">{status}</h3>
@@ -39,9 +41,17 @@ const Progress = ({ data }) => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {card.map((item, i) => (
-                <KanbanCard key={item.id} data={item} index={i} />
-              ))}
+              {card.map((item, i) => {
+                const data = cards[item];
+                return (
+                  <KanbanCard
+                    key={data.id}
+                    data={data}
+                    progressId={id}
+                    index={i}
+                  />
+                );
+              })}
               {provided.placeholder}
               <AddCard handleClick={handleOpen} />
             </div>

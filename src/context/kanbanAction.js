@@ -5,6 +5,19 @@ export const reorderTask = (task, projectId, progressId) => {
   };
 };
 
+export const moveBetween = (
+  newStart,
+  newFinish,
+  projectId,
+  startId,
+  finishId
+) => {
+  return {
+    type: "BETWEEN_PROGRESS",
+    payload: { newStart, newFinish, projectId, startId, finishId },
+  };
+};
+
 export const addProject = (projectName) => {
   return {
     type: "ADD_PROJECT",
@@ -33,6 +46,17 @@ export const addCard = (
       date,
       priority,
       type,
+    },
+  };
+};
+
+export const deleteCard = (projectId, progressId, index) => {
+  return {
+    type: "DELETE_CARD",
+    payload: {
+      projectId,
+      progressId,
+      index,
     },
   };
 };

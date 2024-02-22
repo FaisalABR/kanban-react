@@ -5,7 +5,8 @@ import { NavLink } from "react-router-dom";
 import { addProject } from "../context/kanbanAction";
 
 const Sidebar = () => {
-  const { state, dispatch } = useKanban();
+  const { projects, dispatch } = useKanban();
+  const getProject = Object.keys(projects);
   const [project, setProject] = useState(false);
   const [inputProject, setInputProject] = useState("");
 
@@ -46,19 +47,22 @@ const Sidebar = () => {
             />
           </div>
           <div className="flex flex-col my-4">
-            {state.map((item) => (
-              <NavLink
-                to={`/projects/${item.id}`}
-                key={item.id}
-                className={({ isActive }) =>
-                  isActive
-                    ? "block text-sm font-semibold text-navy px-2 py-1 bg-blue-50 rounded-md"
-                    : "block text-sm font-semibold text-navy px-2 py-1  rounded-md"
-                }
-              >
-                {item.projectName}
-              </NavLink>
-            ))}
+            {getProject.map((item) => {
+              const data = projects[item];
+              return (
+                <NavLink
+                  to={`/projects/${data.id}`}
+                  key={data.id}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block text-sm font-semibold text-navy px-2 py-1 bg-blue-50 rounded-md"
+                      : "block text-sm font-semibold text-navy px-2 py-1  rounded-md"
+                  }
+                >
+                  {data.projectName}
+                </NavLink>
+              );
+            })}
             {project && (
               <form onSubmit={handleSubmit} className="flex flex-col text-sm">
                 <input

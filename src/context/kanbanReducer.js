@@ -20,6 +20,15 @@ export const kanbanReducer = produce((draft, action) => {
         });
       }
       break;
+    case "DELETE_CARD":
+      {
+        const project = draft.find((item) => item.id === payload.projectId);
+        const progress = project.progress.find(
+          (item) => item.id === payload.progressId
+        );
+        progress.card.splice(payload.index, 1);
+      }
+      break;
     case "ADD_PROJECT":
       draft.push({
         id: uuidv4(),
@@ -47,6 +56,21 @@ export const kanbanReducer = produce((draft, action) => {
           },
         ],
       });
+      break;
+    case "BETWEEN_PROGRESS":
+      {
+        const project = draft.find((item) => item.id === payload.projectId);
+        const progressStart = project.progress.find(
+          (item) => item.id === payload.startId
+        );
+
+        const progressFinish = project.progress.find(
+          (item) => item.id === payload.finishId
+        );
+        progressStart.card = payload.newStart;
+        progressFinish.card = payload.newFinish;
+      }
+
       break;
     case "REORDERING":
       {

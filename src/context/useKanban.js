@@ -4,6 +4,7 @@ import { KanbanContext } from "./KanbanContext";
 export const useKanban = () => {
   const context = useContext(KanbanContext);
   const { state, dispatch } = context;
+  const { projects, progress, cards } = state;
 
   if (context === undefined) {
     throw new Error("useKanban must be used within KanbanProvider");
@@ -13,5 +14,5 @@ export const useKanban = () => {
     return state.find((item) => item.id === id);
   };
 
-  return { state, dispatch, getProject };
+  return { projects, progress, cards, dispatch, getProject };
 };

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addCard } from "../context/kanbanAction";
 import { useKanban } from "../context/useKanban";
+import PropTypes from "prop-types";
 
 const ModalTask = ({ setOpenModal, projectId, progressId }) => {
   const [task, setTask] = useState({
@@ -33,11 +34,10 @@ const ModalTask = ({ setOpenModal, projectId, progressId }) => {
       type: "",
     });
     setOpenModal(false);
-    console.log(task);
   };
 
   return (
-    <div className="ml-48 z-40 fixed top-0 left-0 right-0 bottom-0 h-full bg-black/50 flex justify-center items-center">
+    <div className="md:ml-48 z-40 fixed top-0 left-0 right-0 bottom-0 h-full bg-black/50 flex justify-center items-center">
       <div className="w-6/12  bg-white rounded-md px-4 py-2 ">
         <h2 className="text-2xl font-bold text-navy my-2">Add Task</h2>
         <form onSubmit={handleSubmit}>
@@ -151,6 +151,12 @@ const ModalTask = ({ setOpenModal, projectId, progressId }) => {
       </div>
     </div>
   );
+};
+
+ModalTask.propTypes = {
+  setOpenModal: PropTypes.func,
+  projectId: PropTypes.string,
+  progressId: PropTypes.string,
 };
 
 export default ModalTask;
