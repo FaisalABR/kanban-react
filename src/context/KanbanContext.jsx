@@ -47,6 +47,7 @@ const newState = {
       date: "nov",
       priority: "low",
       type: "dev",
+      subtask: ["subtask-1", "subtask-2"],
     },
     "card-7": {
       id: "card-7",
@@ -55,6 +56,7 @@ const newState = {
       date: "nov",
       priority: "mid",
       type: "research",
+      subtask: ["subtask-1"],
     },
     "card-8": {
       id: "card-8",
@@ -63,6 +65,7 @@ const newState = {
       date: "nov",
       priority: "mid",
       type: "planning",
+      subtask: ["subtask-2"],
     },
     "card-9": {
       id: "card-9",
@@ -71,6 +74,7 @@ const newState = {
       date: "nov",
       priority: "high",
       type: "design",
+      subtask: ["subtask-3"],
     },
     "card-10": {
       id: "card-10",
@@ -79,92 +83,32 @@ const newState = {
       date: "nov",
       priority: "high",
       type: "research",
+      subtask: ["subtask-4"],
+    },
+  },
+  subtasks: {
+    "subtask-1": {
+      id: "subtask-1",
+      content: "create docs",
+      isDone: false,
+    },
+    "subtask-2": {
+      id: "subtask-2",
+      content: "communicate with hr",
+      isDone: false,
+    },
+    "subtask-3": {
+      id: "subtask-3",
+      content: "slicing with dev",
+      isDone: false,
+    },
+    "subtask-4": {
+      id: "subtask-4",
+      content: "gg",
+      isDone: false,
     },
   },
 };
-
-// iterate keys project
-
-// const initialState = [
-//   {
-//     id: "project-1",
-//     projectName: "Mobile Apps Project",
-//     progress: [
-//       {
-//         id: "progress-2",
-//         status: "todo",
-//         card: [
-//           {
-//             id: "card-6",
-//             title: "Implement a low priority software very simple",
-//             description: "An easy software will be made quickly",
-//             date: "nov",
-//             priority: "low",
-//             type: "dev",
-//           },
-//           {
-//             id: "card-10",
-//             title: "Implement a low priority software very simple",
-//             description: "An easy software will be made quickly",
-//             date: "nov",
-//             priority: "high",
-//             type: "research",
-//           },
-//           {
-//             id: "card-11",
-//             title: "Implement a low priority software very simple",
-//             description: "An easy software will be made quickly",
-//             date: "nov",
-//             priority: "high",
-//             type: "content",
-//           },
-//         ],
-//       },
-//       {
-//         id: "progress-3",
-//         status: "in work",
-//         card: [
-//           {
-//             id: "card-7",
-//             title: "Research user preferences",
-//             description: "Research user prefences by their country ",
-//             date: "nov",
-//             priority: "mid",
-//             type: "research",
-//           },
-//         ],
-//       },
-//       {
-//         id: "progress-4",
-//         status: "in progress",
-//         card: [
-//           {
-//             id: "card-8",
-//             title: "Budget planning",
-//             description: "Budget for making a web apps",
-//             date: "nov",
-//             priority: "mid",
-//             type: "planning",
-//           },
-//         ],
-//       },
-//       {
-//         id: "progress-5",
-//         status: "completed",
-//         card: [
-//           {
-//             id: "card-9",
-//             title: "Design UI/UX App",
-//             description: "Designing with Figma",
-//             date: "nov",
-//             priority: "high",
-//             type: "design",
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ];
 
 export const KanbanProvider = ({ children }) => {
   const [state, dispatch] = useReducer(kanbanReducer, newState);

@@ -55,9 +55,14 @@ export const kanbanReducer = produce((draft, action) => {
         progressFinish.card = payload.newFinish;
       }
       break;
-    case "REORDERING":
+    case "REORDER_TASK":
       {
         draft.progress[payload.progressId].card = payload.task;
+      }
+      break;
+    case "REORDER_SUBTASK":
+      {
+        draft.cards[payload.cardId].subtask = payload.task;
       }
       break;
     default:

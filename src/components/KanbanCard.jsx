@@ -11,7 +11,7 @@ import { useKanban } from "../context/useKanban";
 import { deleteCard } from "../context/kanbanAction";
 
 const KanbanCard = ({ data, index, progressId }) => {
-  const { title, description, date, priority, type, id } = data;
+  const { title, description, date, priority, type, subtask, id } = data;
   const { dispatch } = useKanban();
   const [openDots, setOpenDots] = useState(false);
 
@@ -58,7 +58,7 @@ const KanbanCard = ({ data, index, progressId }) => {
           <div className="flex flex-col">
             <div className="flex justify-between items-center text-navy ">
               <p className="text-sm">Progress</p>
-              <span className="text-sm">4/10</span>
+              <span className="text-sm">4/{subtask.length}</span>
             </div>
             <div className="my-2 relative">
               <div className="w-full h-2 bg-gray-400/50 rounded-md"></div>

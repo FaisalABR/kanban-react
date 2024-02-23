@@ -1,7 +1,13 @@
 export const reorderTask = (task, progressId) => {
   return {
-    type: "REORDERING",
+    type: "REORDER_TASK",
     payload: { task, progressId },
+  };
+};
+export const reorderSubTask = (task, cardId) => {
+  return {
+    type: "REORDER_SUBTASK",
+    payload: { task, cardId },
   };
 };
 
