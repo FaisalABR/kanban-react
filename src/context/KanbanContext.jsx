@@ -47,7 +47,7 @@ const newState = {
       date: "nov",
       priority: "low",
       type: "dev",
-      subtask: ["subtask-1", "subtask-2"],
+      subtask: ["subtask-1", "subtask-2", "subtask-3"],
     },
     "card-7": {
       id: "card-7",
@@ -90,7 +90,7 @@ const newState = {
     "subtask-1": {
       id: "subtask-1",
       content: "create docs",
-      isDone: false,
+      isDone: true,
     },
     "subtask-2": {
       id: "subtask-2",

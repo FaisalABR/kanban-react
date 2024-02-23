@@ -6,6 +6,7 @@ import Subtask from "../components/Subtask";
 import { DragDropContext } from "react-beautiful-dnd";
 import DropComponent from "../components/DropComponent";
 import { reorderSubTask } from "../context/kanbanAction";
+import Type from "../components/Type";
 
 const CardDetail = () => {
   const { cardId } = useParams();
@@ -36,9 +37,19 @@ const CardDetail = () => {
       <h2 className="md:text-2xl text-xl text-navy font-semibold">
         {card.title}
       </h2>
-      <div className="flex gap-3 my-2">
-        <Date date={card.date} />
-        <Priority priority={card.priority} />
+      <div className="flex flex-col  gap-3 my-2">
+        <div className="flex items-center gap-2 my-1">
+          <span className="text-violet-kanban font-semibold">Due date: </span>
+          <Date date={card.date} />
+        </div>
+        <div className="flex items-center gap-2 my-1">
+          <span className="text-violet-kanban font-semibold">Priority: </span>
+          <Priority priority={card.priority} />
+        </div>
+        <div className="flex items-center gap-2 my-1">
+          <span className="text-violet-kanban font-semibold">Type: </span>
+          <Type type={card.type} />
+        </div>
       </div>
 
       <div className="flex flex-col my-5">
@@ -47,6 +58,7 @@ const CardDetail = () => {
       </div>
       <div className="flex flex-col my-5">
         <h3 className="text-violet-kanban font-semibold">Sub task:</h3>
+
         <DragDropContext onDragEnd={onDragEnd}>
           <DropComponent droppableId={card.id}>
             {(provided) => {
