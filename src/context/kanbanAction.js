@@ -29,11 +29,7 @@ export const addProject = (projectName) => {
 
 export const addCard = (
   progressId,
-  title,
-  description,
-  date,
-  priority,
-  type
+  { title, description, date, priority, type }
 ) => {
   return {
     type: "ADD_CARD",

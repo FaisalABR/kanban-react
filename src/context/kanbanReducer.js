@@ -14,6 +14,7 @@ export const kanbanReducer = produce((draft, action) => {
           date: payload.date,
           priority: payload.priority,
           type: payload.type,
+          subtask: [],
         };
         draft.progress[payload.progressId].card.push(cardId);
 

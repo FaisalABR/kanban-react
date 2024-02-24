@@ -15,16 +15,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addCard(
-        progressId,
-        task.title,
-        task.description,
-        task.date,
-        task.priority,
-        task.type
-      )
-    );
+    dispatch(addCard(progressId, task));
     setTask({
       title: "",
       description: "",

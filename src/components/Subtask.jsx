@@ -5,12 +5,12 @@ import { useState } from "react";
 import cx from "classnames";
 import { Draggable } from "react-beautiful-dnd";
 
-const Subtask = ({ id, content, index }) => {
+const Subtask = ({ id, content, isDone, index }) => {
   const [check, setCheck] = useState(false);
   console.log(check);
 
   const contentClass = cx({
-    "line-through text-gray-400": check,
+    "line-through text-gray-400": isDone === check,
   });
   return (
     <Draggable draggableId={id} index={index}>
@@ -30,8 +30,9 @@ const Subtask = ({ id, content, index }) => {
             <GoTrash size={20} className="text-red-400" />
             <input
               type="checkbox"
-              checked={check}
-              onChange={() => setCheck(!check)}
+              checked={isDone === check}
+              value={check}
+              onChange={(e) => setCheck(!e.target.value)}
             />
           </div>
         </div>
@@ -43,6 +44,7 @@ const Subtask = ({ id, content, index }) => {
 Subtask.propTypes = {
   id: PropTypes.string,
   content: PropTypes.string,
+  isDone: PropTypes.bool,
   index: PropTypes.number,
 };
 

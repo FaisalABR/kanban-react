@@ -35,7 +35,7 @@ const Progress = ({ data }) => {
         {(provided) => {
           return (
             <div
-              className="w-full rounded-md bg-blue-50  p-2"
+              className="w-full rounded-md bg-blue-50  p-2 "
               ref={provided.innerRef}
               {...provided.droppableProps}
             >

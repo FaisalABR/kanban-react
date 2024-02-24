@@ -34,7 +34,7 @@ const KanbanCard = ({ data, index, progressId }) => {
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className="w-full bg-white rounded-md shadow-md p-2 my-2"
+          className="w-full animate-card-out bg-white rounded-md shadow-md p-2 my-2 relative "
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}

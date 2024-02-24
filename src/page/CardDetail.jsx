@@ -75,6 +75,7 @@ const CardDetail = () => {
                         key={sub.id}
                         id={sub.id}
                         content={sub.content}
+                        isDone={sub.isDone}
                         index={i}
                       />
                     );
