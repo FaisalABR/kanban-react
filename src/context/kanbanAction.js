@@ -1,9 +1,24 @@
+export const addSubtask = (content, cardId) => {
+  return {
+    type: "ADD_SUBTASK",
+    payload: { content, cardId },
+  };
+};
+
+export const completeSubtask = (subtaskId, condition) => {
+  return {
+    type: "COMPLETED_SUBTASK",
+    payload: { subtaskId, condition },
+  };
+};
+
 export const reorderTask = (task, progressId) => {
   return {
     type: "REORDER_TASK",
     payload: { task, progressId },
   };
 };
+
 export const reorderSubTask = (task, cardId) => {
   return {
     type: "REORDER_SUBTASK",

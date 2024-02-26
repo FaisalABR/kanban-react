@@ -5,13 +5,18 @@ import Date from "../components/Date";
 import Subtask from "../components/Subtask";
 import { DragDropContext } from "react-beautiful-dnd";
 import DropComponent from "../components/DropComponent";
-import { reorderSubTask } from "../context/kanbanAction";
+import { addSubtask, reorderSubTask } from "../context/kanbanAction";
 import Type from "../components/Type";
+import AddCard from "../components/AddCard";
+import { useState } from "react";
 
 const CardDetail = () => {
+  const [openInput, setOpenInput] = useState(false);
+  const [inputSubtask, setInputSubtask] = useState("");
   const { cardId } = useParams();
   const { getCard, subtasks, dispatch } = useKanban();
   const card = getCard(cardId);
+
   const onDragEnd = (result) => {
     //TODO
     const { destination, source, draggableId } = result;
@@ -32,6 +37,17 @@ const CardDetail = () => {
 
     dispatch(reorderSubTask(newSubtaskId, source.droppableId));
   };
+
+  const handleOpen = () => {
+    setOpenInput(!openInput);
+  };
+
+  const handleAddSubtask = () => {
+    dispatch(addSubtask(inputSubtask, cardId));
+    setInputSubtask("");
+    setOpenInput(false);
+  };
+
   return (
     <div className="w-full py-3 px-10 md:ml-56">
       <h2 className="md:text-2xl text-xl text-navy font-semibold">
@@ -57,7 +73,7 @@ const CardDetail = () => {
         <p className="text-navy">{card.description}</p>
       </div>
       <div className="flex flex-col my-5">
-        <h3 className="text-violet-kanban font-semibold">Sub task:</h3>
+        <h3 className="text-violet-kanban font-semibold my-2">Sub task:</h3>
 
         <DragDropContext onDragEnd={onDragEnd}>
           <DropComponent droppableId={card.id}>
@@ -81,6 +97,35 @@ const CardDetail = () => {
                     );
                   })}
                   {provided.placeholder}
+                  {openInput ? (
+                    <div className="w-6/12 flex flex-col gap-2">
+                      <input
+                        type="text"
+                        placeholder="Search"
+                        className="bg-blue-100 rounded-md p-1 outline-none"
+                        value={inputSubtask}
+                        onChange={(e) => setInputSubtask(e.target.value)}
+                      />
+                      <div className="flex items-center gap-1">
+                        <button
+                          type="submit"
+                          className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
+                          onClick={handleAddSubtask}
+                        >
+                          Submit
+                        </button>
+                        <button
+                          type="submit"
+                          className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
+                          onClick={handleOpen}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <AddCard handleClick={handleOpen} />
+                  )}
                 </div>
               );
             }}

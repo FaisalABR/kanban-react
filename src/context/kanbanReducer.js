@@ -27,6 +27,20 @@ export const kanbanReducer = produce((draft, action) => {
         delete draft.cards[payload.cardId];
       }
       break;
+    case "ADD_SUBTASK":
+      {
+        const id = uuidv4();
+        draft.cards[payload.cardId].subtask.push(id);
+        draft.subtasks[id] = {
+          id,
+          content: payload.content,
+          isDone: false,
+        };
+      }
+      break;
+    case "COMPLETED_SUBTASK":
+      draft.subtasks[payload.subtaskId].isDone = payload.condition;
+      break;
     case "ADD_PROJECT":
       {
         const projectId = uuidv4();

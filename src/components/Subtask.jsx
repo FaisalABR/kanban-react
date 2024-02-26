@@ -1,17 +1,22 @@
 import { MdDragIndicator } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import cx from "classnames";
 import { Draggable } from "react-beautiful-dnd";
+import { useKanban } from "../context/useKanban";
+import { completeSubtask } from "../context/kanbanAction";
 
 const Subtask = ({ id, content, isDone, index }) => {
-  const [check, setCheck] = useState(false);
-  console.log(check);
-
+  const { dispatch } = useKanban();
   const contentClass = cx({
-    "line-through text-gray-400": isDone === check,
+    "line-through text-gray-400": isDone === true,
   });
+
+  const handleDone = () => {
+    const condition = !isDone;
+    dispatch(completeSubtask(id, condition));
+  };
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
@@ -28,12 +33,23 @@ const Subtask = ({ id, content, isDone, index }) => {
           </div>
           <div className="flex items-center gap-3">
             <GoTrash size={20} className="text-red-400" />
-            <input
-              type="checkbox"
-              checked={isDone === check}
-              value={check}
-              onChange={(e) => setCheck(!e.target.value)}
-            />
+            {isDone ? (
+              <button
+                type="submit"
+                className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
+                onClick={handleDone}
+              >
+                Undone
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
+                onClick={handleDone}
+              >
+                Done
+              </button>
+            )}
           </div>
         </div>
       )}
