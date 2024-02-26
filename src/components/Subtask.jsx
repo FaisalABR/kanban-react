@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 import { Draggable } from "react-beautiful-dnd";
 import { useKanban } from "../context/useKanban";
-import { completeSubtask } from "../context/kanbanAction";
+import { completeSubtask, deleteSubtask } from "../context/kanbanAction";
+import { useParams } from "react-router-dom";
 
 const Subtask = ({ id, content, isDone, index }) => {
   const { dispatch } = useKanban();
+  const { cardId } = useParams();
   const contentClass = cx({
     "line-through text-gray-400": isDone === true,
   });
@@ -17,11 +19,15 @@ const Subtask = ({ id, content, isDone, index }) => {
     dispatch(completeSubtask(id, condition));
   };
 
+  const handleDelete = () => {
+    dispatch(deleteSubtask(cardId, id, index));
+  };
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className="w-6/12 flex gap-2 justify-between items-center px-2 py-1 rounded-md border-2 border-gray-200 my-2"
+          className="w-full flex gap-2 justify-between items-center px-2 py-1 rounded-md border-2 border-gray-200 my-2"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
@@ -32,7 +38,11 @@ const Subtask = ({ id, content, isDone, index }) => {
             <p className={contentClass}>{content}</p>
           </div>
           <div className="flex items-center gap-3">
-            <GoTrash size={20} className="text-red-400" />
+            <GoTrash
+              size={20}
+              className="text-red-400"
+              onClick={handleDelete}
+            />
             {isDone ? (
               <button
                 type="submit"

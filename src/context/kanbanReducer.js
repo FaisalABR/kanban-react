@@ -21,6 +21,10 @@ export const kanbanReducer = produce((draft, action) => {
         draft.cards[cardId] = data;
       }
       break;
+    case "DELETE_SUBTASK":
+      draft.cards[payload.cardId].subtask.splice(payload.index, 1);
+      delete draft.subtasks[payload.subtaskId];
+      break;
     case "DELETE_CARD":
       {
         draft.progress[payload.progressId].card.splice(payload.index, 1);

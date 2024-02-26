@@ -80,7 +80,7 @@ const CardDetail = () => {
             {(provided) => {
               return (
                 <div
-                  className="p-1 border-[1px] border-gray-400 rounded-md "
+                  className="w-11/12 p-1 border-[1px] border-gray-400 rounded-md "
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
@@ -98,7 +98,7 @@ const CardDetail = () => {
                   })}
                   {provided.placeholder}
                   {openInput ? (
-                    <div className="w-6/12 flex flex-col gap-2">
+                    <div className="w-full flex flex-col gap-2">
                       <input
                         type="text"
                         placeholder="Search"

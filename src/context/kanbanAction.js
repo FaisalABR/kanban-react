@@ -5,6 +5,13 @@ export const addSubtask = (content, cardId) => {
   };
 };
 
+export const deleteSubtask = (cardId, subtaskId, index) => {
+  return {
+    type: "DELETE_SUBTASK",
+    payload: { cardId, subtaskId, index },
+  };
+};
+
 export const completeSubtask = (subtaskId, condition) => {
   return {
     type: "COMPLETED_SUBTASK",
