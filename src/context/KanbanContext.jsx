@@ -110,14 +110,15 @@ const newState = {
   },
 };
 
+const initializer = (initialValue = newState) =>
+  JSON.parse(localStorage.getItem("data")) || initialValue;
+
 export const KanbanProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(kanbanReducer, newState);
+  const [state, dispatch] = useReducer(kanbanReducer, newState, initializer);
 
   useEffect(() => {
-    localStorage.setItem("projects", JSON.stringify(state.projects));
-    localStorage.setItem("progress", JSON.stringify(state.progress));
-    localStorage.setItem("cards", JSON.stringify(state.cards));
-    localStorage.setItem("subtasks", JSON.stringify(state.subtasks));
+    console.log("data persisted on local storage", state);
+    localStorage.setItem("data", JSON.stringify(state));
   }, [state]);
 
   return (

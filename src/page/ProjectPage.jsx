@@ -32,24 +32,24 @@ function ProjectPage() {
       newTasks.splice(destination.index, 0, taskDraggable);
 
       dispatch(reorderTask(newTasks, source.droppableId));
+    } else {
+      // Moving to another list
+      const startTasks = Array.from(start.card);
+      const taskDraggable = startTasks.find((item) => item === draggableId);
+      startTasks.splice(source.index, 1);
+
+      const finsihTasks = Array.from(finish.card);
+      finsihTasks.splice(destination.index, 0, taskDraggable);
+
+      dispatch(
+        moveBetween(
+          startTasks,
+          finsihTasks,
+          source.droppableId,
+          destination.droppableId
+        )
+      );
     }
-
-    // Moving to another list
-    const startTasks = Array.from(start.card);
-    const taskDraggable = startTasks.find((item) => item === draggableId);
-    startTasks.splice(source.index, 1);
-
-    const finsihTasks = Array.from(finish.card);
-    finsihTasks.splice(destination.index, 0, taskDraggable);
-
-    dispatch(
-      moveBetween(
-        startTasks,
-        finsihTasks,
-        source.droppableId,
-        destination.droppableId
-      )
-    );
   };
 
   return (
