@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addCard } from "../context/kanbanAction";
 import { useKanban } from "../context/useKanban";
 import PropTypes from "prop-types";
+import Button, { SecondaryButton } from "./Button";
 
 const ModalTask = ({ setOpenModal, progressId }) => {
   const [task, setTask] = useState({
@@ -124,18 +125,11 @@ const ModalTask = ({ setOpenModal, progressId }) => {
             </select>
           </div>
           <div className="flex gap-3">
-            <button
-              type="submit"
-              className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
-            >
-              Submit
-            </button>
-            <button
-              className=" rounded-md border-[1px] border-violet-kanban text-violet-kanban px-2"
-              onClick={() => setOpenModal(false)}
-            >
-              Cancel
-            </button>
+            <Button text="Submit" handleClick={handleSubmit} />
+            <SecondaryButton
+              text="Cancel"
+              handleClick={() => setOpenModal(false)}
+            />
           </div>
         </form>
       </div>

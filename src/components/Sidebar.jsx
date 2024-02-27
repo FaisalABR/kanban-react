@@ -3,6 +3,7 @@ import { BsPlusSquareFill } from "react-icons/bs";
 import { useKanban } from "../context/useKanban";
 import { NavLink } from "react-router-dom";
 import { addProject } from "../context/kanbanAction";
+import Button, { SecondaryButton } from "./Button";
 
 const Sidebar = () => {
   const { projects, dispatch } = useKanban();
@@ -24,7 +25,7 @@ const Sidebar = () => {
         <div className="flex gap-2 items-center">
           <div className="size-16 bg-violet-kanban rounded-md"></div>
           <div className="text-left">
-            <p className="font-semibold text-navy">Faisal</p>
+            <p className="font-semibold text-navy">Kanban</p>
             <p className="font-normal text-gray-400 text-sm">Workspace</p>
           </div>
         </div>
@@ -73,18 +74,11 @@ const Sidebar = () => {
                   onChange={(e) => setInputProject(e.target.value)}
                 />
                 <div className="flex gap-2">
-                  <button
-                    type="submit"
-                    className="grow bg-violet-kanban rounded-md text-white font-semibold"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    className="grow rounded-md border-[1px] border-violet-kanban text-violet-kanban"
-                    onClick={() => setProject(false)}
-                  >
-                    Cancel
-                  </button>
+                  <Button text="Submit" handleClick={handleSubmit} />
+                  <SecondaryButton
+                    text="Cancel"
+                    handleClick={() => setProject(false)}
+                  />
                 </div>
               </form>
             )}

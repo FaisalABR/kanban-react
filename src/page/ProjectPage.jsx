@@ -1,11 +1,15 @@
-import { BsThreeDots, BsPersonAdd } from "react-icons/bs";
+import { BsPersonAdd } from "react-icons/bs";
 import Progress from "../components/Progress";
 import { useKanban } from "../context/useKanban";
 import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import { moveBetween, reorderTask } from "../context/kanbanAction";
+import { BiTrashAlt } from "react-icons/bi";
+import ModalDelete from "../components/ModalDelete";
+import { useState } from "react";
 
 function ProjectPage() {
+  const [openModal, setOpenModal] = useState(false);
   const { projectId } = useParams();
   const { projects, progress, dispatch } = useKanban();
   const fetchProgress = projects[projectId].progress;
@@ -62,7 +66,11 @@ function ProjectPage() {
           </h2>
           <div className="flex gap-3 items-center text-gray-400">
             <BsPersonAdd size={20} className="cursor-pointer" />
-            <BsThreeDots size={20} className="cursor-pointer" />
+            <BiTrashAlt
+              size={20}
+              className="cursor-pointer transition-all hover:text-red-400"
+              onClick={() => setOpenModal(true)}
+            />
           </div>
         </div>
         <div className="h-[0.5px] w-full bg-gray-400/50 my-4"></div>
@@ -76,6 +84,13 @@ function ProjectPage() {
           </div>
         </DragDropContext>
       </div>
+      {openModal && (
+        <ModalDelete
+          projectName={projects[projectId].projectName}
+          projectId={projectId}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </div>
   );
 }

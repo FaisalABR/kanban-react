@@ -49,6 +49,13 @@ export const addProject = (projectName) => {
   };
 };
 
+export const deleteProject = (projectId) => {
+  return {
+    type: "DELETE_PROJECT",
+    payload: projectId,
+  };
+};
+
 export const addCard = (
   progressId,
   { title, description, date, priority, type }

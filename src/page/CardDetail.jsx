@@ -9,6 +9,7 @@ import { addSubtask, reorderSubTask } from "../context/kanbanAction";
 import Type from "../components/Type";
 import AddCard from "../components/AddCard";
 import { useState } from "react";
+import Button, { SecondaryButton } from "../components/Button";
 
 const CardDetail = () => {
   const [openInput, setOpenInput] = useState(false);
@@ -107,20 +108,11 @@ const CardDetail = () => {
                         onChange={(e) => setInputSubtask(e.target.value)}
                       />
                       <div className="flex items-center gap-1">
-                        <button
-                          type="submit"
-                          className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
-                          onClick={handleAddSubtask}
-                        >
-                          Submit
-                        </button>
-                        <button
-                          type="submit"
-                          className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
-                          onClick={handleOpen}
-                        >
-                          Cancel
-                        </button>
+                        <Button text="Submit" handleClick={handleAddSubtask} />
+                        <SecondaryButton
+                          text="Cancel"
+                          handleClick={() => setOpenInput(false)}
+                        />
                       </div>
                     </div>
                   ) : (

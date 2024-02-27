@@ -69,6 +69,9 @@ export const kanbanReducer = produce((draft, action) => {
         });
       }
       break;
+    case "DELETE_PROJECT":
+      delete draft.projects[payload];
+      break;
     case "BETWEEN_PROGRESS":
       {
         const progressStart = draft.progress[payload.startId];

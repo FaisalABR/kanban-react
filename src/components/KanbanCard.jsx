@@ -10,6 +10,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useKanban } from "../context/useKanban";
 import { deleteCard } from "../context/kanbanAction";
+import { SecondaryButton } from "./Button";
 
 const KanbanCard = ({ data, index, progressId }) => {
   const { title, description, date, priority, type, subtask, id } = data;
@@ -67,9 +68,7 @@ const KanbanCard = ({ data, index, progressId }) => {
               <Priority priority={priority} />
             </div>
             <Link to={`/cards/${id}`}>
-              <button className="text-sm rounded-md border-[1px] border-violet-kanban text-violet-kanban px-1">
-                Details
-              </button>
+              <SecondaryButton text="Details" />
             </Link>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { useKanban } from "../context/useKanban";
 import { completeSubtask, deleteSubtask } from "../context/kanbanAction";
 import { useParams } from "react-router-dom";
+import Button, { SecondaryButton } from "./Button";
 
 const Subtask = ({ id, content, isDone, index }) => {
   const { dispatch } = useKanban();
@@ -44,21 +45,9 @@ const Subtask = ({ id, content, isDone, index }) => {
               onClick={handleDelete}
             />
             {isDone ? (
-              <button
-                type="submit"
-                className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
-                onClick={handleDone}
-              >
-                Undone
-              </button>
+              <SecondaryButton text="Undone" handleClick={handleDone} />
             ) : (
-              <button
-                type="submit"
-                className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
-                onClick={handleDone}
-              >
-                Done
-              </button>
+              <Button text="Done" handleClick={handleDone} />
             )}
           </div>
         </div>
