@@ -13,7 +13,7 @@ const ModalDelete = ({ projectName, projectId, setOpenModal }) => {
     navigate("/");
   };
   return (
-    <div className="md:ml-48 z-40 fixed top-0 left-0 right-0 bottom-0 h-full bg-black/50 flex justify-center items-center">
+    <div className="md:ml-56 z-40 fixed top-0 left-0 right-0 bottom-0 h-full bg-black/50 flex justify-center items-center">
       <div className="w-5/12 rounded-md shadow-md bg-slate-50 flex flex-col items-center p-2">
         <p className="text-lg text-navy ">
           Are you sure want to{" "}

@@ -4,6 +4,7 @@ import { useKanban } from "../context/useKanban";
 import { NavLink } from "react-router-dom";
 import { addProject } from "../context/kanbanAction";
 import Button, { SecondaryButton } from "./Button";
+import { BsKanbanFill } from "react-icons/bs";
 
 const Sidebar = () => {
   const { projects, dispatch } = useKanban();
@@ -19,11 +20,12 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-dvh hidden md:flex fixed bg-white basis-48  justify-between z-50 overflow-y-auto">
+    <div className="h-dvh basis-2/12 fixed  hidden md:flex bg-white justify-between">
       <div className="flex flex-col px-2 py-3">
         {/* Head */}
         <div className="flex gap-2 items-center">
-          <div className="size-16 bg-violet-kanban rounded-md"></div>
+          <BsKanbanFill size={60} className=" rounded-md text-violet-kanban" />
+
           <div className="text-left">
             <p className="font-semibold text-navy">Kanban</p>
             <p className="font-normal text-gray-400 text-sm">Workspace</p>

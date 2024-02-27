@@ -10,6 +10,7 @@ import Type from "../components/Type";
 import AddCard from "../components/AddCard";
 import { useState } from "react";
 import Button, { SecondaryButton } from "../components/Button";
+import Layout from "../components/Layout";
 
 const CardDetail = () => {
   const [openInput, setOpenInput] = useState(false);
@@ -50,81 +51,88 @@ const CardDetail = () => {
   };
 
   return (
-    <div className="w-full py-3 px-10 md:ml-56">
-      <h2 className="md:text-2xl text-xl text-navy font-semibold">
-        {card.title}
-      </h2>
-      <div className="flex flex-col  gap-3 my-2">
-        <div className="flex items-center gap-2 my-1">
-          <span className="text-violet-kanban font-semibold">Due date: </span>
-          <Date date={card.date} />
+    <Layout>
+      <div className="basis-10/12 py-3 px-10 md:ml-56">
+        <h2 className="md:text-2xl text-xl text-navy font-semibold">
+          {card.title}
+        </h2>
+        <div className="flex flex-col  gap-3 my-2">
+          <div className="flex items-center gap-2 my-1">
+            <span className="text-violet-kanban font-semibold">Due date: </span>
+            <Date date={card.date} />
+          </div>
+          <div className="flex items-center gap-2 my-1">
+            <span className="text-violet-kanban font-semibold">Priority: </span>
+            <Priority priority={card.priority} />
+          </div>
+          <div className="flex items-center gap-2 my-1">
+            <span className="text-violet-kanban font-semibold">Type: </span>
+            <Type type={card.type} />
+          </div>
         </div>
-        <div className="flex items-center gap-2 my-1">
-          <span className="text-violet-kanban font-semibold">Priority: </span>
-          <Priority priority={card.priority} />
-        </div>
-        <div className="flex items-center gap-2 my-1">
-          <span className="text-violet-kanban font-semibold">Type: </span>
-          <Type type={card.type} />
-        </div>
-      </div>
 
-      <div className="flex flex-col my-5">
-        <h3 className="text-violet-kanban font-semibold">Task description:</h3>
-        <p className="text-navy">{card.description}</p>
-      </div>
-      <div className="flex flex-col my-5">
-        <h3 className="text-violet-kanban font-semibold my-2">Sub task:</h3>
+        <div className="flex flex-col my-5">
+          <h3 className="text-violet-kanban font-semibold">
+            Task description:
+          </h3>
+          <p className="text-navy">{card.description}</p>
+        </div>
+        <div className="flex flex-col my-5">
+          <h3 className="text-violet-kanban font-semibold my-2">Sub task:</h3>
 
-        <DragDropContext onDragEnd={onDragEnd}>
-          <DropComponent droppableId={card.id}>
-            {(provided) => {
-              return (
-                <div
-                  className="w-11/12 bg-blue-50 p-1 border-[1px] border-gray-400 rounded-md "
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  {card.subtask.map((item, i) => {
-                    const sub = subtasks[item];
-                    return (
-                      <Subtask
-                        key={sub.id}
-                        id={sub.id}
-                        content={sub.content}
-                        isDone={sub.isDone}
-                        index={i}
-                      />
-                    );
-                  })}
-                  {provided.placeholder}
-                  {openInput ? (
-                    <div className="w-full flex flex-col gap-2">
-                      <input
-                        type="text"
-                        placeholder="Search"
-                        className="bg-blue-100 rounded-md p-1 outline-none"
-                        value={inputSubtask}
-                        onChange={(e) => setInputSubtask(e.target.value)}
-                      />
-                      <div className="flex items-center gap-1">
-                        <Button text="Submit" handleClick={handleAddSubtask} />
-                        <SecondaryButton
-                          text="Cancel"
-                          handleClick={() => setOpenInput(false)}
+          <DragDropContext onDragEnd={onDragEnd}>
+            <DropComponent droppableId={card.id}>
+              {(provided) => {
+                return (
+                  <div
+                    className="w-11/12 bg-blue-50 p-1 border-[1px] border-gray-400 rounded-md "
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {card.subtask.map((item, i) => {
+                      const sub = subtasks[item];
+                      return (
+                        <Subtask
+                          key={sub.id}
+                          id={sub.id}
+                          content={sub.content}
+                          isDone={sub.isDone}
+                          index={i}
                         />
+                      );
+                    })}
+                    {provided.placeholder}
+                    {openInput ? (
+                      <div className="w-full flex flex-col gap-2">
+                        <input
+                          type="text"
+                          placeholder="Search"
+                          className="bg-blue-100 rounded-md p-1 outline-none"
+                          value={inputSubtask}
+                          onChange={(e) => setInputSubtask(e.target.value)}
+                        />
+                        <div className="flex items-center gap-1">
+                          <Button
+                            text="Submit"
+                            handleClick={handleAddSubtask}
+                          />
+                          <SecondaryButton
+                            text="Cancel"
+                            handleClick={() => setOpenInput(false)}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <AddCard handleClick={handleOpen} title="Add Subtask" />
-                  )}
-                </div>
-              );
-            }}
-          </DropComponent>
-        </DragDropContext>
+                    ) : (
+                      <AddCard handleClick={handleOpen} title="Add Subtask" />
+                    )}
+                  </div>
+                );
+              }}
+            </DropComponent>
+          </DragDropContext>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

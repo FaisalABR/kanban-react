@@ -10,16 +10,11 @@ import CardDetail from "./page/CardDetail";
 function App() {
   return (
     <>
-      <div className="flex">
-        <Sidebar />
-        <div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects/:projectId" element={<ProjectPage />} />
-            <Route path="/cards/:cardId" element={<CardDetail />} />
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:projectId" element={<ProjectPage />} />
+        <Route path="/cards/:cardId" element={<CardDetail />} />
+      </Routes>
     </>
   );
 }
