@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const kanbanReducer = produce((draft, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case "ADD_CARD":
       {
@@ -19,6 +20,8 @@ export const kanbanReducer = produce((draft, action) => {
         draft.progress[payload.progressId].card.push(cardId);
 
         draft.cards[cardId] = data;
+        localStorage.setItem("cards", JSON.stringify(draft.cards));
+        localStorage.setItem("progress", JSON.stringify(draft.progress));
       }
       break;
     case "DELETE_SUBTASK":

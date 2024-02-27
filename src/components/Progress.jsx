@@ -11,7 +11,8 @@ import { useKanban } from "../context/useKanban";
 
 const Progress = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
-  const { cards } = useKanban();
+  const { getCards } = useKanban();
+  const cards = getCards();
   const { status, card, id } = data;
 
   const handleOpen = () => {
@@ -51,7 +52,7 @@ const Progress = ({ data }) => {
                 );
               })}
               {provided.placeholder}
-              <AddCard handleClick={handleOpen} />
+              <AddCard handleClick={handleOpen} title="Add Card" />
             </div>
           );
         }}

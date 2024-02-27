@@ -1,13 +1,23 @@
 import PropTypes from "prop-types";
 import cx from "classnames";
+import { useKanban } from "../context/useKanban";
 
-const ProgressBar = ({ totalDoneSub, totalSub, widthProgress }) => {
+const ProgressBar = ({ subtask }) => {
+  const { subtasks } = useKanban();
+  const totalSub = subtask.length;
+  const totalDoneSub =
+    subtask.length > 0
+      ? subtask.filter((item) => subtasks[item].isDone === true).length
+      : 0;
+  const widthProgress = (totalDoneSub / totalSub) * 100;
+
   const progressClass = cx({
     "transition-all h-2 rounded-md absolute top-0": true,
     "bg-red-500": widthProgress > 0 && widthProgress <= 40,
-    "bg-yellow-500": widthProgress > 40 && widthProgress <= 0,
-    "bg-green-500": widthProgress === 100,
+    "bg-yellow-500": widthProgress > 40 && widthProgress <= 70,
+    "bg-green-500": widthProgress > 70 && widthProgress <= 100,
   });
+
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center text-navy ">
@@ -30,9 +40,8 @@ const ProgressBar = ({ totalDoneSub, totalSub, widthProgress }) => {
 };
 
 ProgressBar.propTypes = {
-  totalDoneSub: PropTypes.number,
   totalSub: PropTypes.number,
-  widthProgress: PropTypes.number,
+  subtask: PropTypes.array,
 };
 
 export default ProgressBar;

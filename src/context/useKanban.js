@@ -18,5 +18,19 @@ export const useKanban = () => {
     return cards[id];
   };
 
-  return { projects, progress, cards, subtasks, dispatch, getProject, getCard };
+  const getCards = () => {
+    const data = JSON.parse(localStorage.getItem("cards"));
+    return data;
+  };
+
+  return {
+    projects,
+    progress,
+    cards,
+    subtasks,
+    dispatch,
+    getProject,
+    getCard,
+    getCards,
+  };
 };

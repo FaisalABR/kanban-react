@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import { kanbanReducer } from "./kanbanReducer";
 import PropTypes from "prop-types";
 
@@ -47,7 +47,7 @@ const newState = {
       date: "nov",
       priority: "low",
       type: "dev",
-      subtask: ["subtask-1", "subtask-2", "subtask-3"],
+      subtask: [],
     },
     "card-7": {
       id: "card-7",
@@ -112,6 +112,13 @@ const newState = {
 
 export const KanbanProvider = ({ children }) => {
   const [state, dispatch] = useReducer(kanbanReducer, newState);
+
+  useEffect(() => {
+    localStorage.setItem("projects", JSON.stringify(state.projects));
+    localStorage.setItem("progress", JSON.stringify(state.progress));
+    localStorage.setItem("cards", JSON.stringify(state.cards));
+    localStorage.setItem("subtasks", JSON.stringify(state.subtasks));
+  }, [state]);
 
   return (
     <KanbanContext.Provider value={{ state, dispatch }}>

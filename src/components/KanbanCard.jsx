@@ -13,13 +13,8 @@ import { deleteCard } from "../context/kanbanAction";
 
 const KanbanCard = ({ data, index, progressId }) => {
   const { title, description, date, priority, type, subtask, id } = data;
-  const { dispatch, subtasks } = useKanban();
+  const { dispatch } = useKanban();
   const [openDots, setOpenDots] = useState(false);
-  const totalSub = subtask.length;
-  const totalDoneSub = subtask.filter(
-    (item) => subtasks[item].isDone === true
-  ).length;
-  const widthProgress = (totalDoneSub / totalSub) * 100;
 
   const dotsClass = cx({
     "text-navy cursor-pointer transition-all p-1": true,
@@ -61,15 +56,7 @@ const KanbanCard = ({ data, index, progressId }) => {
           <h4 className="font-semibold my-2 text-navy ">{title}</h4>
           <p className="text-sm text-gray-400 my-3">{description}</p>
           {/* Progress */}
-          {totalSub === 0 ? (
-            <></>
-          ) : (
-            <ProgressBar
-              totalDoneSub={totalDoneSub}
-              totalSub={totalSub}
-              widthProgress={widthProgress}
-            />
-          )}
+          {subtask.length === 0 ? <></> : <ProgressBar subtask={subtask} />}
           {/*  */}
           <div className="flex items-center justify-between my-3">
             <div className="flex items-center gap-2">

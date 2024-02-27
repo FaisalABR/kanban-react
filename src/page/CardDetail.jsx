@@ -80,7 +80,7 @@ const CardDetail = () => {
             {(provided) => {
               return (
                 <div
-                  className="w-11/12 p-1 border-[1px] border-gray-400 rounded-md "
+                  className="w-11/12 bg-blue-50 p-1 border-[1px] border-gray-400 rounded-md "
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
@@ -124,7 +124,7 @@ const CardDetail = () => {
                       </div>
                     </div>
                   ) : (
-                    <AddCard handleClick={handleOpen} />
+                    <AddCard handleClick={handleOpen} title="Add Subtask" />
                   )}
                 </div>
               );
