@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { addProject } from "../context/kanbanAction";
 import Button, { SecondaryButton } from "./Button";
 import { BsKanbanFill } from "react-icons/bs";
+import { IoHomeOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   const { projects, dispatch } = useKanban();
@@ -20,7 +21,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-dvh basis-2/12 fixed  hidden md:flex bg-white justify-between">
+    <div className="h-dvh basis-2/12 fixed  hidden md:flex bg-white justify-between px-2">
       <div className="flex flex-col px-2 py-3">
         {/* Head */}
         <div className="flex gap-2 items-center">
@@ -36,8 +37,21 @@ const Sidebar = () => {
           <input
             type="text"
             placeholder="Search"
-            className="bg-blue-100 rounded-md p-1 outline-none"
+            className="bg-blue-100 rounded-md p-1 outline-none my-2"
           />
+        </div>
+        <div className="my-3">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center gap-3 text-sm font-semibold text-navy py-1 bg-blue-50 rounded-md"
+                : "flex items-center gap-3 text-sm font-semibold text-navy py-1  rounded-md"
+            }
+          >
+            <IoHomeOutline size={20} />
+            Home
+          </NavLink>
         </div>
         {/* Projects */}
         <div className="my-3">
@@ -58,8 +72,8 @@ const Sidebar = () => {
                   key={data.id}
                   className={({ isActive }) =>
                     isActive
-                      ? "block text-sm font-semibold text-navy px-2 py-1 bg-blue-50 rounded-md"
-                      : "block text-sm font-semibold text-navy px-2 py-1  rounded-md"
+                      ? "block text-sm font-semibold text-navy py-1 bg-blue-50 rounded-md"
+                      : "block text-sm font-semibold text-navy py-1  rounded-md"
                   }
                 >
                   {data.projectName}
