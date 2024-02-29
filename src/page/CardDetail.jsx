@@ -52,8 +52,8 @@ const CardDetail = () => {
 
   return (
     <Layout>
-      <div className="basis-10/12 py-3 px-10 md:ml-56">
-        <h2 className="md:text-2xl text-xl text-navy font-semibold">
+      <div className="basis-10/12 min-h-[100vh] dark:bg-[#212121] py-3 px-10 md:ml-56">
+        <h2 className="md:text-2xl text-xl text-navy dark:text-violet-kanban font-semibold">
           {card.title}
         </h2>
         <div className="flex flex-col  gap-3 my-2">
@@ -85,7 +85,7 @@ const CardDetail = () => {
               {(provided) => {
                 return (
                   <div
-                    className="w-11/12 bg-blue-50 p-1 border-[1px] border-gray-400 rounded-md "
+                    className="w-11/12 bg-blue-50 dark:bg-gray-800 p-1 border-[1px] border-gray-400 rounded-md "
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >

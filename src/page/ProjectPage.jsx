@@ -59,11 +59,11 @@ function ProjectPage() {
 
   return (
     <Layout>
-      <div className="md:basis-10/12  md:ml-56  py-2 overflow-y-auto">
+      <div className="md:basis-10/12  md:ml-56  py-2 overflow-y-auto dark:bg-[#212121]">
         {/* Top */}
         <div className="px-3">
           <div className="w-full flex justify-between items-center">
-            <h2 className="text-lg md:text-xl lg:text-2xl text-navy font-semibold">
+            <h2 className="text-lg md:text-xl lg:text-2xl text-navy dark:text-violet-kanban font-semibold">
               {projects[projectId].projectName}
             </h2>
             <div className="flex gap-3 items-center text-gray-400">

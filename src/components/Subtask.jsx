@@ -12,7 +12,7 @@ const Subtask = ({ id, content, isDone, index }) => {
   const { dispatch } = useKanban();
   const { cardId } = useParams();
   const contentClass = cx({
-    "line-through text-gray-400": isDone === true,
+    "line-through text-gray-400 dark:text-yellow-100": isDone === true,
   });
 
   const handleDone = () => {
@@ -28,13 +28,13 @@ const Subtask = ({ id, content, isDone, index }) => {
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className="w-full flex gap-2 justify-between items-center px-2 py-1 rounded-md border-2 border-gray-200 my-2"
+          className="w-full flex gap-2 justify-between  items-center px-2 py-1 rounded-md border-2 border-gray-200 my-2"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
           <div className="flex items-center gap-3 ">
             <div {...provided.dragHandleProps}>
-              <MdDragIndicator size={25} />
+              <MdDragIndicator size={25} className="dark:text-white" />
             </div>
             <p className={contentClass}>{content}</p>
           </div>

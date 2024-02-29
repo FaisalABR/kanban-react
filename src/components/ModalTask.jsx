@@ -29,8 +29,10 @@ const ModalTask = ({ setOpenModal, progressId }) => {
 
   return (
     <div className="md:ml-56 z-40 fixed top-0 left-0 right-0 bottom-0 h-full bg-black/50 flex justify-center items-center">
-      <div className="w-6/12  bg-white rounded-md px-4 py-2 ">
-        <h2 className="text-2xl font-bold text-navy my-2">Add Task</h2>
+      <div className="w-6/12  bg-white dark:bg-[#212121] dark:shadow-sm dark:shadow-white rounded-md px-4 py-2 ">
+        <h2 className="text-2xl font-bold text-navy dark:text-violet-kanban my-2">
+          Add Task
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col my-2">
             <label htmlFor="title" className="text-violet-kanban font-semibold">
@@ -42,7 +44,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               onChange={(e) => setTask({ ...task, title: e.target.value })}
               name="title"
               placeholder="Add your title task..."
-              className="w-full rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
             />
           </div>
           <div className="flex flex-col my-2">
@@ -59,7 +61,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
                 setTask({ ...task, description: e.target.value })
               }
               placeholder="Add your description task..."
-              className="w-full max-h-[150px] min-h-[80px] rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              className="w-full dark:bg-gray-700 dark:text-white max-h-[150px] min-h-[80px] rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
             />
           </div>
           <div className="flex flex-col my-2">
@@ -72,7 +74,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               onChange={(e) => setTask({ ...task, date: e.target.value })}
               name="date"
               placeholder="Add your date task..."
-              className="w-full rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
             />
           </div>
           <div className="flex flex-col my-2">
@@ -83,7 +85,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               Priority
             </label>
             <select
-              className="w-full rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
               value={task.priority}
               onChange={(e) => setTask({ ...task, priority: e.target.value })}
             >
@@ -104,7 +106,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
             </label>
             <select
               defaultValue={task.type}
-              className="w-full rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
               onChange={(e) => setTask({ ...task, type: e.target.value })}
             >
               <option value="design" className="font-semibold text-gray-500">

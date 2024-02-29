@@ -6,6 +6,7 @@ import { addProject } from "../context/kanbanAction";
 import Button, { SecondaryButton } from "./Button";
 import { BsKanbanFill } from "react-icons/bs";
 import { IoHomeOutline } from "react-icons/io5";
+import SwitchBackground from "./SwitchBackground";
 
 const Sidebar = () => {
   const { projects, dispatch } = useKanban();
@@ -21,10 +22,10 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-dvh basis-2/12 fixed  hidden md:flex bg-white justify-between px-2">
-      <div className="flex flex-col px-2 py-3">
+    <div className="h-dvh basis-2/12 fixed  hidden md:flex bg-white dark:bg-[#212121] justify-between ">
+      <div className="flex flex-col  py-3">
         {/* Head */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 px-4 items-center">
           <BsKanbanFill size={60} className=" rounded-md text-violet-kanban" />
 
           <div className="text-left">
@@ -33,20 +34,20 @@ const Sidebar = () => {
           </div>
         </div>
         {/* Search */}
-        <div className=" my-3">
+        <div className=" px-4 my-3">
           <input
             type="text"
             placeholder="Search"
             className="bg-blue-100 rounded-md p-1 outline-none my-2"
           />
         </div>
-        <div className="my-3">
+        <div className="px-4 my-3">
           <NavLink
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "flex items-center gap-3 text-sm font-semibold text-navy py-1 bg-blue-50 rounded-md"
-                : "flex items-center gap-3 text-sm font-semibold text-navy py-1  rounded-md"
+                ? "flex items-center gap-3 text-sm font-semibold text-navy dark:text-white py-1 bg-blue-50 dark:bg-gray-700 rounded-md"
+                : "flex items-center gap-3 text-sm font-semibold text-navy dark:text-white py-1  rounded-md"
             }
           >
             <IoHomeOutline size={20} />
@@ -54,7 +55,7 @@ const Sidebar = () => {
           </NavLink>
         </div>
         {/* Projects */}
-        <div className="my-3">
+        <div className="my-3 px-4">
           <div className="flex justify-between items-center">
             <p className="text-violet-kanban">Projects</p>
             <BsPlusSquareFill
@@ -72,8 +73,8 @@ const Sidebar = () => {
                   key={data.id}
                   className={({ isActive }) =>
                     isActive
-                      ? "block text-sm font-semibold text-navy py-1 bg-blue-50 rounded-md"
-                      : "block text-sm font-semibold text-navy py-1  rounded-md"
+                      ? "block text-sm font-semibold text-navy dark:text-white py-1 bg-blue-50 dark:bg-gray-700 rounded-md"
+                      : "block text-sm font-semibold text-navy dark:text-white py-1  rounded-md"
                   }
                 >
                   {data.projectName}
@@ -100,6 +101,8 @@ const Sidebar = () => {
             )}
           </div>
         </div>
+        {/* bg color */}
+        <SwitchBackground />
       </div>
       <div className="w-px bg-gray-400/50 min-h-svh"></div>
     </div>

@@ -19,10 +19,12 @@ const Progress = ({ data }) => {
   };
 
   return (
-    <div className="w-[250px]">
+    <div className="w-[250px] ">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <h3 className="uppercase text-navy font-semibold">{status}</h3>
+          <h3 className="uppercase text-navy font-semibold dark:text-violet-kanban">
+            {status}
+          </h3>
           <span className="block text-gray-400 px-3 border-2 rounded-xl">
             {card.length}
           </span>
@@ -35,7 +37,7 @@ const Progress = ({ data }) => {
         {(provided) => {
           return (
             <div
-              className="w-full rounded-md bg-blue-50  p-2 "
+              className="w-full rounded-md bg-blue-50 dark:bg-gray-800  p-2 "
               ref={provided.innerRef}
               {...provided.droppableProps}
             >

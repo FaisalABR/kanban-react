@@ -21,8 +21,8 @@ const ProgressBar = ({ subtask }) => {
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center text-navy ">
-        <p className="text-sm">Progress</p>
-        <span className="text-sm">
+        <p className="text-sm dark:text-violet-kanban">Progress</p>
+        <span className="text-sm dark:text-violet-kanban">
           {totalDoneSub}/{totalSub}
         </span>
       </div>

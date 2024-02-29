@@ -30,7 +30,7 @@ const KanbanCard = ({ data, index, progressId }) => {
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className="w-full animate-card-out bg-white rounded-md shadow-md p-2 my-2 relative "
+          className="w-full animate-card-out bg-white dark:bg-[#212121] rounded-md shadow-md p-2 my-2 relative "
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -54,8 +54,12 @@ const KanbanCard = ({ data, index, progressId }) => {
               </div>
             )}
           </div>
-          <h4 className="font-semibold my-2 text-navy ">{title}</h4>
-          <p className="text-sm text-gray-400 my-3">{description}</p>
+          <h4 className="font-semibold my-2 text-navy dark:text-violet-kanban ">
+            {title}
+          </h4>
+          <p className="text-sm text-gray-400 my-3 dark:text-white">
+            {description}
+          </p>
           {/* Progress */}
           {subtask.length === 0 ? <></> : <ProgressBar subtask={subtask} />}
           {/*  */}
