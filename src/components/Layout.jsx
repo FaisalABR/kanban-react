@@ -1,5 +1,5 @@
 import Sidebar from "./Sidebar";
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 
 const Layout = ({ children }) => {
   return (
@@ -10,4 +10,7 @@ const Layout = ({ children }) => {
   );
 };
 
+Layout.propTypes = {
+  children: PropTypes.any,
+};
 export default Layout;

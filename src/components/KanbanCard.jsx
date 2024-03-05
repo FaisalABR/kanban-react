@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useKanban } from "../context/useKanban";
 import { deleteCard } from "../context/kanbanAction";
 import { SecondaryButton } from "./Button";
+import Month from "./Month";
 
 const KanbanCard = ({ data, index, progressId }) => {
   const { title, description, date, priority, type, subtask, id } = data;
@@ -30,7 +31,7 @@ const KanbanCard = ({ data, index, progressId }) => {
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <div
-          className="w-full animate-card-out bg-white dark:bg-[#212121] rounded-md shadow-md p-2 my-2 relative "
+          className="w-full bg-white dark:bg-[#212121] rounded-md shadow-md p-2 my-2 relative "
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
@@ -67,7 +68,7 @@ const KanbanCard = ({ data, index, progressId }) => {
             <div className="flex items-center gap-2">
               <span className="flex text-sm items-center gap-1 text-gray-400 capitalize">
                 <BiCalendar size={20} />
-                {date}
+                <Month date={date} />
               </span>
               <Priority priority={priority} />
             </div>

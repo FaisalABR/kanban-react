@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
 import welcome from "../assets/welcome.svg";
+import Navbar from "../components/Navbar";
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
         </div>
         <div className="px-10"></div>
       </div>
+      <Navbar />
     </Layout>
   );
 }

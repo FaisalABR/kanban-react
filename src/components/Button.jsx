@@ -14,6 +14,7 @@ export const SecondaryButton = ({ text, handleClick }) => {
 const Button = ({ text, handleClick }) => {
   return (
     <button
+      type="submit"
       onClick={handleClick}
       className=" bg-violet-kanban rounded-md text-white font-semibold px-2"
     >

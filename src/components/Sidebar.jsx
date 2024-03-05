@@ -29,7 +29,9 @@ const Sidebar = () => {
           <BsKanbanFill size={60} className=" rounded-md text-violet-kanban" />
 
           <div className="text-left">
-            <p className="font-semibold text-navy">Kanban</p>
+            <p className="font-semibold text-navy dark:text-violet-kanban">
+              Kanban
+            </p>
             <p className="font-normal text-gray-400 text-sm">Workspace</p>
           </div>
         </div>

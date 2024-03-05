@@ -11,6 +11,9 @@ import AddCard from "../components/AddCard";
 import { useState } from "react";
 import Button, { SecondaryButton } from "../components/Button";
 import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const CardDetail = () => {
   const [openInput, setOpenInput] = useState(false);
@@ -18,6 +21,7 @@ const CardDetail = () => {
   const { cardId } = useParams();
   const { getCard, subtasks, dispatch } = useKanban();
   const card = getCard(cardId);
+  const navigate = useNavigate();
 
   const onDragEnd = (result) => {
     //TODO
@@ -52,7 +56,13 @@ const CardDetail = () => {
 
   return (
     <Layout>
-      <div className="basis-10/12 min-h-[100vh] dark:bg-[#212121] py-3 px-10 md:ml-56">
+      <div className="md:basis-10/12 min-h-[100vh] dark:bg-[#212121] py-3 px-10 md:ml-56">
+        <div
+          className="md:hidden p-1 bg-violet-kanban rounded-full w-fit text-white my-2"
+          onClick={() => navigate(-1)}
+        >
+          <IoIosArrowRoundBack size={25} />
+        </div>
         <h2 className="md:text-2xl text-xl text-navy dark:text-violet-kanban font-semibold">
           {card.title}
         </h2>
@@ -132,6 +142,7 @@ const CardDetail = () => {
           </DragDropContext>
         </div>
       </div>
+      <Navbar />
     </Layout>
   );
 };

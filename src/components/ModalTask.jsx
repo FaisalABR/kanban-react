@@ -29,7 +29,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
 
   return (
     <div className="md:ml-56 z-40 fixed top-0 left-0 right-0 bottom-0 h-full bg-black/50 flex justify-center items-center">
-      <div className="w-6/12  bg-white dark:bg-[#212121] dark:shadow-sm dark:shadow-white rounded-md px-4 py-2 ">
+      <div className="md:w-6/12 w-11/12 bg-white dark:bg-[#212121] dark:shadow-sm dark:shadow-white rounded-md px-4 py-2 ">
         <h2 className="text-2xl font-bold text-navy dark:text-violet-kanban my-2">
           Add Task
         </h2>
@@ -45,6 +45,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               name="title"
               placeholder="Add your title task..."
               className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              required
             />
           </div>
           <div className="flex flex-col my-2">
@@ -62,6 +63,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               }
               placeholder="Add your description task..."
               className="w-full dark:bg-gray-700 dark:text-white max-h-[150px] min-h-[80px] rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              required
             />
           </div>
           <div className="flex flex-col my-2">
@@ -75,6 +77,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               name="date"
               placeholder="Add your date task..."
               className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
+              required
             />
           </div>
           <div className="flex flex-col my-2">
@@ -88,6 +91,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
               value={task.priority}
               onChange={(e) => setTask({ ...task, priority: e.target.value })}
+              required
             >
               <option value="low" className="font-semibold text-gray-500">
                 Low
@@ -108,6 +112,7 @@ const ModalTask = ({ setOpenModal, progressId }) => {
               defaultValue={task.type}
               className="w-full dark:bg-gray-700 dark:text-white rounded-md border-2 mt-2 p-1 outline-1 outline-violet-kanban"
               onChange={(e) => setTask({ ...task, type: e.target.value })}
+              required
             >
               <option value="design" className="font-semibold text-gray-500">
                 Design

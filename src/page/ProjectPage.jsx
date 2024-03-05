@@ -8,6 +8,7 @@ import { BiTrashAlt } from "react-icons/bi";
 import ModalDelete from "../components/ModalDelete";
 import { useState } from "react";
 import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
 
 function ProjectPage() {
   const [openModal, setOpenModal] = useState(false);
@@ -59,7 +60,7 @@ function ProjectPage() {
 
   return (
     <Layout>
-      <div className="md:basis-10/12  md:ml-56  py-2 overflow-y-auto dark:bg-[#212121]">
+      <div className="md:basis-10/12  md:ml-56  py-2 overflow-y-auto min-h-[100vh] dark:bg-[#212121]">
         {/* Top */}
         <div className="px-3">
           <div className="w-full flex justify-between items-center">
@@ -94,6 +95,7 @@ function ProjectPage() {
           />
         )}
       </div>
+      <Navbar />
     </Layout>
   );
 }
